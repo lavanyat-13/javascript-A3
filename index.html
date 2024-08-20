@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assessment Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color:palegoldenrod;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .task {
+            background: palevioletred;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            cursor: pointer;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Assessment Tasks</h1>
+
+    <!-- Task 1: Simple Calculator -->
+    <div class="task">
+        <h2>Task 1: Simple Calculator</h2>
+        <input type="number" id="num1" placeholder="First Number">
+        <input type="number" id="num2" placeholder="Second Number">
+        <input type="text" id="operator" placeholder="Operator (+, -, *, /)">
+        <button onclick="calculate()">Calculate</button>
+        <p id="calcResult"></p>
+    </div>
+
+    <!-- Task 2: Array Operations -->
+    <div class="task">
+        <h2>Task 2: Array Operations</h2>
+        <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas">
+        <button onclick="sumEvenNumbers()">Sum Even Numbers</button>
+        <p id="sumResult"></p>
+    </div>
+
+    <!-- Task 3: Object Manipulation -->
+    <div class="task">
+        <h2>Task 3: Object Manipulation</h2>
+        <input type="text" id="firstName" placeholder="First Name">
+        <input type="text" id="lastName" placeholder="Last Name">
+        <input type="number" id="age" placeholder="Age">
+        <button onclick="createPerson()">Create Person</button>
+        <p id="personResult"></p>
+        <button onclick="incrementAge()">Increment Age</button>
+        <p id="newAge"></p>
+    </div>
+
+    <script>
+        // Task 1: Simple Calculator
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operator = document.getElementById('operator').value;
+            let result;
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = 'Invalid operator';
+            }
+
+            document.getElementById('calcResult').textContent = `Result: ${result}`;
+        }
+
+        // Task 2: Array Operations
+        function sumEvenNumbers() {
+            const arrayInput = document.getElementById('arrayInput').value;
+            const numbers = arrayInput.split(',').map(Number);
+            let sum = 0;
+
+            for (let i = 0; i < numbers.length; i++) {
+                if (numbers[i] % 2 === 0) {
+                    sum += numbers[i];
+                }
+            }
+
+            document.getElementById('sumResult').textContent = `Sum of even numbers: ${sum}`;
+        }
+
+        // Task 3: Object Manipulation
+        let person;
+
+        function createPerson() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const age = parseInt(document.getElementById('age').value);
+
+            person = {
+                firstName: firstName,
+                lastName: lastName,
+                age: age,
+                getFullName: function() {
+                    return `${this.firstName} ${this.lastName}`;
+                },
+                incrementAge: function() {
+                    this.age++;
+                }
+            };
+
+            document.getElementById('personResult').textContent = `Person created: ${person.getFullName()}, Age: ${person.age}`;
+        }
+
+        function incrementAge() {
+            if (person) {
+                person.incrementAge();
+                document.getElementById('newAge').textContent = `New Age: ${person.age}`;
+            } else {
+                document.getElementById('newAge').textContent = 'Please create a person first.';
+            }
+        }
+    </script>
+
+</body>
+</html>
